@@ -25,6 +25,8 @@
 #include "Sprite2D.h"
 
 
+
+
 #define rep(n) for(int i =0;i<n;i++)
 //-----------------------------------------------------------------------------
 // グローバル変数
@@ -35,6 +37,8 @@ Block g_block2;
 Block g_block3;
 
 Sprite2D* g_title;
+
+
 
 std::vector<Object*> ObjectList;
 std::vector<std::vector<Hitbox*>> g_ActiveHitboxList;
@@ -134,11 +138,11 @@ bool Game::GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool full
 //==============================================================================
 void Game::GameInput(GameEnum::Scene scene) {
 	/*UpdateInput();*/
-
+	/*control = new Controller(1);*/
 	switch (scene) {
 	case GameEnum::Scene::TITLE: {
 		//マウスを左クリックしたとき
-		if (GetKeyboardPress(DIK_T)) {
+		if (GetKeyboardPress(DIK_A)) {
 			gameScene = GameEnum::Scene::PLAY;
 			//PlaySound(SOUND_LABEL_BGM000);
 		}

@@ -1,6 +1,7 @@
 #include "potideko.h"
 #include "input.h"
 #include<vector>
+
 using namespace std;
 
 Potideko::Potideko() {
@@ -53,7 +54,7 @@ bool Potideko::Init(XMFLOAT2 origin, XMFLOAT2* vertex, XMFLOAT2 Speed) {
 	//‰æ‘œ“Ç‚İ‚İ
 	sts = CreateSRVfromFile("assets/hontai.png", device, devicecontext, &ResHead, &SrvHead);
 	if (!sts)
-	{+
+	{
 		MessageBox(nullptr, "CreateSRVfromfile ƒGƒ‰[", "error!!", MB_OK);
 		return false;
 	}
