@@ -1,8 +1,17 @@
 #include "potideko.h"
 #include "input.h"
 #include<vector>
+#include "Controller.h"
 
 using namespace std;
+
+Controller* control;
+int old_key;
+int new_key;
+
+int old_key2;
+int new_key2;
+
 
 Potideko::Potideko() {
 }
@@ -66,6 +75,8 @@ bool Potideko::Init(XMFLOAT2 origin, XMFLOAT2* vertex, XMFLOAT2 Speed) {
 	}
 	//‰ŠúˆÊ’uÝ’è
 	SetPos(XMFLOAT2(0, 0));
+
+	control = new Controller(1);
 }
 
 void Potideko::Update() {
@@ -73,28 +84,52 @@ void Potideko::Update() {
 	m_PrePos = m_Pos;
 	//“ü—Í
 	//‰ñ“]
-	if (GetKeyboardTrigger(DIK_RIGHT))
+	if (control->GetPadState(control->PAD_R_SHOULDER))
+	{
+		/*m_TargetAngle = (m_TargetAngle + 90.0f);
+		Rotate(0);*/
+		new_key = control->PAD_R_SHOULDER;
+	}
+	else
+	{
+		new_key = 0;
+	}
+	if ((new_key^old_key)&new_key)
 	{
 		m_TargetAngle = (m_TargetAngle + 90.0f);
 		Rotate(0);
 	}
-	if (GetKeyboardTrigger(DIK_LEFT))
+
+	old_key = new_key;
+
+	if (control->GetPadState(control->PAD_L_SHOULDER))
+	{
+	/*	m_TargetAngle = (m_TargetAngle - 90.0f);
+		Rotate(1);*/
+		new_key2 = control->PAD_L_SHOULDER;
+	}
+	else
+	{
+		new_key2 = 0;
+	}
+	if ((new_key2^old_key2)&new_key2)
 	{
 		m_TargetAngle = (m_TargetAngle - 90.0f);
 		Rotate(1);
 	}
+	old_key2 = new_key2;
 
 	//ˆÚ“®
-	if (GetKeyboardTrigger(DIK_W))
+	if (control->GetPadState(control->PAD_A))
 	{
 		m_Speed.y = -30;
 	}
 
-	if (GetKeyboardPress(DIK_A))
+	if (control->GetPadState(control->PAD_LEFT_L_STICK))
 	{
 		m_Speed.x = -7;
 	}
-	if (GetKeyboardPress(DIK_D))
+	if (control->GetPadState(control->PAD_LEFT_R_STICK))
 	{
 		m_Speed.x = 7;
 	}

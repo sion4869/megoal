@@ -23,6 +23,7 @@
 #include "Block.h"
 #include "game.h"
 #include "Sprite2D.h"
+#include "Controller.h"
 
 
 
@@ -38,7 +39,7 @@ Block g_block3;
 
 Sprite2D* g_title;
 
-
+Controller* control2;
 
 std::vector<Object*> ObjectList;
 std::vector<std::vector<Hitbox*>> g_ActiveHitboxList;
@@ -126,7 +127,7 @@ bool Game::GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool full
 
 	Sprite2D::CreateShader();
 	if (FAILED(hr2)) return false;
-
+	control2 = new Controller(1);
 	return	true;
 }
 
@@ -142,7 +143,7 @@ void Game::GameInput(GameEnum::Scene scene) {
 	switch (scene) {
 	case GameEnum::Scene::TITLE: {
 		//マウスを左クリックしたとき
-		if (GetKeyboardPress(DIK_A)) {
+		if (control2->GetPadState(control2->PAD_START)) {
 			gameScene = GameEnum::Scene::PLAY;
 			//PlaySound(SOUND_LABEL_BGM000);
 		}
@@ -229,7 +230,7 @@ void Game::GameRender(GameEnum::Scene scene) {
 	switch (gameScene)
 	{
 	case GameEnum::Scene::TITLE: {
-		g_title->Draw();
+		g_title->Draw2();
 		break; }
 
 

@@ -24,7 +24,7 @@ void Sprite2D::Update(void)
 	// TODO: ここに実装コードを追加します.
 }
 
-void Sprite2D::Draw(void)
+void Sprite2D::Draw2(void)
 {
 	ID3D11DeviceContext*		 devicecontext;				// デバイスコンテキスト
 

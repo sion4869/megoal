@@ -9,7 +9,7 @@ class Sprite2D
 public:
 	~Sprite2D();
 	void Update(void);
-	void Draw(void);    //この2D一枚ポリゴンを描画する
+	void Draw2(void);    //この2D一枚ポリゴンを描画する
 
 	HRESULT Initialize(void);   //このクラスのオブジェクトごとに必要な初期化を行う
 	HRESULT LoadTexture(const char* const pTexFileName);   //このポリゴンに使うテクスチャを読み込む
