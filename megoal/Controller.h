@@ -41,6 +41,10 @@ public:
     Controller(int playerNum);
     bool IsConnected();
 	bool GetPadState(PAD_STATE p_state);
+
+	//	êUìÆ
+	void EnableVibration(float L_vib, float R_vib);
+	void DisableVibration();
 private :
 	int _controllerNum;
 	MODE mode;
