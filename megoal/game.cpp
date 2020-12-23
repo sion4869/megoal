@@ -37,7 +37,10 @@ Block g_block1;
 Block g_block2;
 Block g_block3;
 
+Block g_end;
+
 Sprite2D* g_title;
+Sprite2D* g_end2;
 
 Controller* control2;
 
@@ -118,6 +121,8 @@ bool Game::GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool full
 	g_block2.Init(XMFLOAT2(500, 500), epos2);
 	g_block1.Init(XMFLOAT2(400, 200), epos3);
 
+	g_end.Init(XMFLOAT2(400, 200), epos3);
+
 	g_title = new Sprite2D();
 	HRESULT hr2 = g_title->Initialize();
 	if (FAILED(hr2)) return false;
@@ -127,6 +132,16 @@ bool Game::GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool full
 
 	Sprite2D::CreateShader();
 	if (FAILED(hr2)) return false;
+
+	g_end2 = new Sprite2D();
+	HRESULT hr3 = g_end2->Initialize();
+	if (FAILED(hr3)) return false;
+
+	g_end2->LoadTexture("assets/endswitch.png");
+	if (FAILED(hr3)) return false;
+
+	Sprite2D::CreateShader();
+	if (FAILED(hr3)) return false;
 	control2 = new Controller(1);
 	return	true;
 }
@@ -151,7 +166,18 @@ void Game::GameInput(GameEnum::Scene scene) {
 
 
 	case GameEnum::Scene::PLAY: {  //firststage
-
+		if (control2->GetPadState(control2->PAD_B)) {
+			gameScene = GameEnum::Scene::END;
+			control2->EnableVibration(1.0f, 1.0f);
+			//PlaySound(SOUND_LABEL_BGM000);
+		}
+		break; }
+	case GameEnum::Scene::END: {  //firststage
+		if (control2->GetPadState(control2->PAD_A)) {
+			gameScene = GameEnum::Scene::TITLE;
+			control2->DisableVibration();
+			//PlaySound(SOUND_LABEL_BGM000);
+		}
 		break; }
 	}
 }
@@ -178,13 +204,10 @@ void Game::GameUpdate(GameEnum::Scene scene) {
 		g_block2.Update();
 		g_block3.Update();
 
-		////“–‚½‚è”»’èˆ—@‚È‚ñ‚¾‚±‚ê
-		//for (auto a : g_ActiveHitboxList)
-		//	for (auto active : a)
-		//		for (auto p : g_PassiveHitboxList)
-		//			for (auto passive : p)
-		//				check_Hit(*active, *passive,1);
 		Collition();
+		break; }
+	case GameEnum::Scene::END: {
+		g_end.Update();
 		break; }
 
 	}
@@ -240,7 +263,10 @@ void Game::GameRender(GameEnum::Scene scene) {
 		g_block2.Draw();
 		g_block3.Draw();
 		break; }
-	
+	case GameEnum::Scene::END: {
+		g_end2->Draw2();
+		break; }
+
 	}
 
 	// •`‰æŒãˆ—
@@ -268,6 +294,11 @@ void Game::GameMain()
 		break;
 
 	case  GameEnum::Scene::PLAY:
+		GameInput(gameScene); // “ü—Í
+		GameUpdate(gameScene);
+		GameRender(gameScene);	// •`‰æ	
+		break;
+	case  GameEnum::Scene::END:
 		GameInput(gameScene); // “ü—Í
 		GameUpdate(gameScene);
 		GameRender(gameScene);	// •`‰æ	

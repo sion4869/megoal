@@ -73,6 +73,7 @@ bool Potideko::Init(XMFLOAT2 origin, XMFLOAT2* vertex, XMFLOAT2 Speed) {
 		MessageBox(nullptr, "CreateSRVfromfile ƒGƒ‰[", "error!!", MB_OK);
 		return false;
 	}
+
 	//‰ŠúˆÊ’uÝ’è
 	SetPos(XMFLOAT2(0, 0));
 
@@ -89,6 +90,7 @@ void Potideko::Update() {
 		/*m_TargetAngle = (m_TargetAngle + 90.0f);
 		Rotate(0);*/
 		new_key = control->PAD_R_SHOULDER;
+		
 	}
 	else
 	{
@@ -96,17 +98,25 @@ void Potideko::Update() {
 	}
 	if ((new_key^old_key)&new_key)
 	{
+		
 		m_TargetAngle = (m_TargetAngle + 90.0f);
 		Rotate(0);
 	}
 
 	old_key = new_key;
+	/*control->DisableVibration();*/
+	/*int cnt = 0;
+	cnt++;
+	if (cnt <= 150) {
+		control->EnableVibration(1.0f, 1.0f);
+	}*/
 
 	if (control->GetPadState(control->PAD_L_SHOULDER))
 	{
 	/*	m_TargetAngle = (m_TargetAngle - 90.0f);
 		Rotate(1);*/
 		new_key2 = control->PAD_L_SHOULDER;
+		
 	}
 	else
 	{

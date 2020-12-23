@@ -48,6 +48,13 @@ bool Block::Init(XMFLOAT2 origin, XMFLOAT2* vertex,XMFLOAT2 Speed) {
 		MessageBox(nullptr, "CreateSRVfromfile エラー", "error!!", MB_OK);
 		return false;
 	}
+
+	sts = CreateSRVfromFile("assets/endswitch.png", device, devicecontext, &ResEnd, &SrvEnd);
+	if (!sts)
+	{
+		MessageBox(nullptr, "CreateSRVfromfile エラー", "error!!", MB_OK);
+		return false;
+	}
 }
 
 void Block::Update() {
@@ -69,6 +76,9 @@ void Block::Draw() {
 
 	// 矩形描画
 	m_Texture.SetPosition(m_Pos.x, m_Pos.y, 0);
+	m_End.SetPosition(m_Pos.x, m_Pos.y, 0);
 	devcontext->PSSetShaderResources(0, 1, SrvBlock.GetAddressOf());
 	m_Texture.Draw();
+	devcontext->PSSetShaderResources(0, 1, SrvEnd.GetAddressOf());
+	m_End.Draw();
 }

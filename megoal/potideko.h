@@ -38,6 +38,8 @@ private:
 	Tex m_Ear;
 	Tex m_Head;
 
+
+
 	Hitbox *m_Centerbox;
 	Hitbox *m_Rightbox;
 	Hitbox *m_Leftbox;
@@ -46,6 +48,8 @@ private:
 	ComPtr < ID3D11Resource> ResHead;
 	ComPtr<ID3D11ShaderResourceView> SrvEar;
 	ComPtr < ID3D11Resource> ResEar;
+
+
 
 public:
 	Potideko();
