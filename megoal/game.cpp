@@ -43,6 +43,7 @@ Sprite2D* g_title;
 Sprite2D* g_end2;
 
 Controller* control2;
+int cnt = 0;
 
 std::vector<Object*> ObjectList;
 std::vector<std::vector<Hitbox*>> g_ActiveHitboxList;
@@ -168,14 +169,25 @@ void Game::GameInput(GameEnum::Scene scene) {
 	case GameEnum::Scene::PLAY: {  //firststage
 		if (control2->GetPadState(control2->PAD_B)) {
 			gameScene = GameEnum::Scene::END;
-			control2->EnableVibration(1.0f, 1.0f);
+			
 			//PlaySound(SOUND_LABEL_BGM000);
 		}
 		break; }
 	case GameEnum::Scene::END: {  //firststage
+
+		
+		cnt++;
+		if (cnt <= 180) {
+			control2->EnableVibration(1.0f, 1.0f);
+		}
+		else {
+			control2->DisableVibration();
+		}
 		if (control2->GetPadState(control2->PAD_A)) {
 			gameScene = GameEnum::Scene::TITLE;
 			control2->DisableVibration();
+			cnt = 0;
+			/*control2->DisableVibration();*/
 			//PlaySound(SOUND_LABEL_BGM000);
 		}
 		break; }
