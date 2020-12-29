@@ -158,7 +158,7 @@ void Game::GameInput(GameEnum::Scene scene) {
 	/*control = new Controller(1);*/
 	switch (scene) {
 	case GameEnum::Scene::TITLE: {
-		//マウスを左クリックしたとき
+		//start押したとき
 		if (control2->GetPadState(control2->PAD_START)) {
 			gameScene = GameEnum::Scene::PLAY;
 			//PlaySound(SOUND_LABEL_BGM000);
