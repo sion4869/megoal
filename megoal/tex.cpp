@@ -266,3 +266,11 @@ void Tex::updateVbuffer() {
 		devcontext->Unmap(m_vertexbuffer.Get(), 0);
 	}
 }
+
+void Tex::MoveVertex(XMFLOAT2 fix)
+{
+	for(int i=0;i<4;i++){
+		m_localpos[i].x += fix.x;
+		m_localpos[i].y += fix.y;
+	}
+}

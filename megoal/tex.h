@@ -69,6 +69,8 @@ public:
 
 	// 頂点バッファ更新
 	void updateVbuffer();
+	//ローカル頂点移動
+	void MoveVertex(XMFLOAT2 fix);
 
 private:
 	DirectX::XMFLOAT4X4		m_worldmtx;				// ワールド変換行列

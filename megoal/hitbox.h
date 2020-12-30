@@ -37,17 +37,21 @@ bool ColSegment(
 );
 
 bool check_Hit(Hitbox a, Hitbox b,bool end);
+bool check_Overrap(Hitbox a, Hitbox b);
 float Search_path(Hitbox a, Hitbox b);
-void Collition();
+float RaytoboxCollision(Segment Seg, Hitbox box);//下向きレイとボックスの交差とその距離をだす
+void Collision();
+void ReCollision();
 class Hitbox {
 public:
-	bool isKinetic;
 	Object* parent;
 
 	//0:左上 1:右上 2:左下 3:→下
 	XMFLOAT2 localpos[4];
 
-	void Init(bool kinetic, Object* op,XMFLOAT2* lpos);
+	void Init(Object* op,XMFLOAT2* lpos);
+
+	void Move(XMFLOAT2 fix);
 
 	void Rotate90(bool dir);
 

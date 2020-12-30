@@ -63,10 +63,16 @@
     <ClInclude Include="player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Sprite2D.h">
+    <ClInclude Include="Controller.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Controller.h">
+    <ClInclude Include="StageGenerator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scean.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -116,10 +122,13 @@
     <ClCompile Include="potideko.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite2D.cpp">
+    <ClCompile Include="Controller.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Controller.cpp">
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Scean.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

@@ -9,14 +9,15 @@
 
 #define		SCREEN_X		1920
 #define		SCREEN_Y		1080
-#define		FULLSCREEN      1
+#define		FULLSCREEN      0
 
 namespace GameEnum {
 	enum Image {
 		TITLE,
+		SENTAKU,
+		SENTAKU2,
 		STAG2,
 		RESULT,
-		POTIDEKO,
 		IMAGE_MAX
 	};
 
@@ -31,14 +32,17 @@ namespace GameEnum {
 //-----------------------------------------------------------------------------
 // プロトタイプ宣言
 //-----------------------------------------------------------------------------
-
-void DrawFPS(HWND hwnd, int dwFrameCount);
-
+//bool GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool fullscreen);
+//void GameMain();
+//void GameExit();
+//void GameInput();
+//void GameUpdate();
+//void GameRender();
 
 class Game {
 private:
+	/*GameEnum::Scene gameScene = GameEnum::Scene::TITLE;*/
 	GameEnum::Scene gameScene = GameEnum::Scene::TITLE;
-
 public:
 	Game() {};
 	bool GameInit(HINSTANCE hinst, HWND hwnd, int width, int height, bool fullscreen);
@@ -49,6 +53,8 @@ public:
 	void GameRender(GameEnum::Scene scene);
 
 };
+
+void DrawFPS(HWND hwnd, int dwFrameCount);
 
 //******************************************************************************
 //	End of file.

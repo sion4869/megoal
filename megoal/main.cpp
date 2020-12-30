@@ -120,6 +120,7 @@ int APIENTRY WinMain(HINSTANCE 	hInstance, 		// アプリケーションのハンドル
 	UpdateWindow(hwnd);
 
 	Game game;
+
 	// ゲームの初期処理
 	if(!game.GameInit(hInstance,hwnd,SCREEN_X,SCREEN_Y,FULLSCREEN)){
 		game.GameExit();

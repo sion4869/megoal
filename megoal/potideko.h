@@ -3,6 +3,7 @@
 #include "Object.h"
 #include"hitbox.h"
 #include"tex.h"
+#include<typeinfo>
 #include<vector>
 
 #define POTIDEKOSIZE 10
@@ -34,28 +35,47 @@ static XMFLOAT2 hidaripos[4] = {
 
 class Potideko :public Object {
 private:
+
+	enum STATE {
+		NEUTRAL,
+		SAKASA,
+		TURN,
+		JUMP,
+		FALL,
+		STOP,
+	} m_state;
 	//âÊëú
-	Tex m_Ear;
+	Tex m_Face;
 	Tex m_Head;
+	Tex m_Foot;
 
-
-
+	//ìñÇΩÇËîªíË
 	Hitbox *m_Centerbox;
 	Hitbox *m_Rightbox;
 	Hitbox *m_Leftbox;
 
+	float m_footPos;//ë´ÇÃå©ÇΩñ⁄ÇÃí∑Ç≥ä«óù
+	Segment *FootRangeL[2];
+	Segment *FootRangeR[2];
+	Segment *SwitchRange;
+
 	ComPtr<ID3D11ShaderResourceView> SrvHead;
 	ComPtr < ID3D11Resource> ResHead;
-	ComPtr<ID3D11ShaderResourceView> SrvEar;
-	ComPtr < ID3D11Resource> ResEar;
-
-
+	ComPtr<ID3D11ShaderResourceView> SrvFace;
+	ComPtr < ID3D11Resource> ResFace;
+	ComPtr<ID3D11ShaderResourceView> SrvFoot;
+	ComPtr < ID3D11Resource> ResFoot;
 
 public:
 	Potideko();
-	bool Init(XMFLOAT2 origin, XMFLOAT2* vertex, XMFLOAT2 Speed=XMFLOAT2(0,0));
+	~Potideko();
+	bool Init(XMFLOAT2 origin);
 	void Update();
+	bool isGrounded(float* out);
 	void Draw();
 	void Rotate(bool dir);
+	bool FootSpring();
+	bool EarSpring();
+	bool CheckSwitch();
 };
 

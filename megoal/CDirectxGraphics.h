@@ -83,30 +83,4 @@ public:
 
 	// アルファブレンド無効化
 	void TurnOffAlphaBlending();
-
-	// Zバッファ無効化
-	void TurnOffZbuffer() {
-		ID3D11RenderTargetView*  rtvtable[1];
-
-		rtvtable[0] = m_lpRenderTargetView.Get();
-
-		m_lpImmediateContext->OMSetRenderTargets(
-			1,										// ターゲット
-			rtvtable,								// ビューテーブル
-			nullptr									// 深度バッファなし
-		);
-	}
-
-	// Zバッファ有効化
-	void TurnOnZBuffer() {
-		ID3D11RenderTargetView*  rtvtable[1];
-
-		rtvtable[0] = m_lpRenderTargetView.Get();
-
-		m_lpImmediateContext->OMSetRenderTargets(
-			1,										// ターゲット
-			rtvtable,								// ビューテーブル
-			m_depthStencilView.Get()				// 深度バッファなし
-		);
-	}
 };
